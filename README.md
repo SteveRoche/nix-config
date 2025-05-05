@@ -1,9 +1,10 @@
 # nix-config
 
-```bash
+```
 $ nix-env -i git
-$ git clone https://github.com/SteveRoche/nix-config $HOME/nix-config
-$ sudo rm -rf /etc/nixos/*
-$ sudo ln -s $HOME/nix-config/hosts/desktop/configuration.nix /etc/nixos/configuration.nix
-$ sudo nixos-rebuild switch
+$ git clone https://github.com/SteveRoche/nix-config ~/nix-config
+$ cd ~/nix-config
+$ sudo nixos-rebuild switch --flake .#wsl # Windows
+$ sudo nixos-rebuild switch --flake .#macos # MacOS
+$ sudo nixos-rebuild switch --flake .#nixos # NixOS
 ```

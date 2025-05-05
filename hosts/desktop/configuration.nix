@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../common-configuration.nix
     ./hardware-configuration.nix
@@ -8,7 +11,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
+  boot.kernelParams = ["nvidia_drm.fbdev=1"];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -45,7 +48,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.graphics.enable = true;
   hardware.nvidia = {
@@ -88,9 +91,9 @@
   users.users.steve = {
     isNormalUser = true;
     description = "Steve Roche";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
   };
 
   # Enable automatic login for the user.
@@ -111,7 +114,7 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -120,47 +123,47 @@
   nix.settings.auto-optimise-store = true;
 
   environment.systemPackages = with pkgs; [
-     efibootmgr
-     nvtopPackages.nvidia
-     cudaPackages.cuda_nvml_dev
+    efibootmgr
+    nvtopPackages.nvidia
+    cudaPackages.cuda_nvml_dev
 
-     neovim
-     helix
-     wget
-     gitAndTools.gitFull
-     lazygit
-     lf
-     zig
-     zls
-     go
-     gopls
-     lldb_18
-     nodejs_22
-     bun
-     shaderc
-     jq
-     ripgrep
-     tree
-     cloc
-     just
-     zoxide
-     unixtools.watch
-     gh
-     pdftk
-     ghostscript
+    neovim
+    helix
+    wget
+    gitAndTools.gitFull
+    lazygit
+    lf
+    zig
+    zls
+    go
+    gopls
+    lldb_18
+    nodejs_22
+    bun
+    shaderc
+    jq
+    ripgrep
+    tree
+    cloc
+    just
+    zoxide
+    unixtools.watch
+    gh
+    pdftk
+    ghostscript
 
-     gnomeExtensions.pop-shell
+    gnomeExtensions.pop-shell
 
-     ghostty
-     obsidian
-     vscode-fhs
-     proton-pass
-     protonvpn-gui
-     protonmail-desktop
-     ticktick
-     evince
+    ghostty
+    obsidian
+    vscode-fhs
+    proton-pass
+    protonvpn-gui
+    protonmail-desktop
+    ticktick
+    evince
 
-     inconsolata
+    inconsolata
   ];
 
   environment.gnome.excludePackages = with pkgs; [
