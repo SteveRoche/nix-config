@@ -17,7 +17,7 @@ zinit snippet OMZP::kubectx
 
 zinit light ziglang/shell-completions
 
-autoload -U compinit && compinit
+autoload -U compinit && compinit -d $XDG_STATE_HOME/.zcompdump
 zinit cdreplay -q
 
 bindkey '^p' history-search-backward
