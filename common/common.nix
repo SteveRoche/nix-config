@@ -11,6 +11,9 @@
   };
   nixpkgs.config.allowUnfree = true;
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   environment.systemPackages = with pkgs; [
     # CLI tools
     wget
@@ -72,6 +75,7 @@
     kustomize_4
 
     # Misc
+    home-manager
     shaderc
     hugo
     dart-sass

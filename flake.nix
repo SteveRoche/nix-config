@@ -22,12 +22,12 @@
     ...
   } @ inputs: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/nixos/configuration.nix
-        ];
-      };
+      #nixos = nixpkgs.lib.nixosSystem {
+      #  system = "x86_64-linux";
+      #  modules = [
+      #    ./hosts/nixos/configuration.nix
+      #  ];
+      #};
 
       wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -35,6 +35,12 @@
           nixos-wsl.nixosModules.default
           ./common/common.nix
           ./hosts/wsl/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.nixos = import ./hosts/wsl/home.nix;
+          }
         ];
       };
     };
@@ -43,6 +49,12 @@
       system = "aarch64-darwin";
       modules = [
         ./hosts/darwin/configuration.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.steve = import ./common/home.nix;
+        }
       ];
     };
   };
