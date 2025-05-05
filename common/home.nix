@@ -13,5 +13,6 @@
 
   home.file = {
     ".zshrc".source = ./dotfiles/zshrc;
+    ".zprofile".source = ./dotfiles/zprofile;
   };
 }
