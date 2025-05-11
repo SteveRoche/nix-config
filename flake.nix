@@ -20,7 +20,7 @@
     nixos-wsl,
     home-manager,
     ...
-  } @ inputs: {
+  }: {
     nixosConfigurations = {
       #nixos = nixpkgs.lib.nixosSystem {
       #  system = "x86_64-linux";
@@ -48,7 +48,8 @@
     darwinConfigurations.macos = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
-        ./hosts/darwin/configuration.nix
+        ./common/common.nix
+        ./hosts/macos/configuration.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ZINIT_HOME="$HOME/.local/share/zinit/zinit.git"
 
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -6,6 +13,8 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 source "$ZINIT_HOME/zinit.zsh"
+
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -20,6 +29,10 @@ zinit light ziglang/shell-completions
 autoload -U compinit && compinit -d $XDG_STATE_HOME/.zcompdump
 zinit cdreplay -q
 
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+bindkey '^r' history-incremental-search-backward
+bindkey '^s' history-incremental-search-forward
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^f' autosuggest-accept
@@ -37,6 +50,13 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+# Completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Case-insensitive completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no # Disable default completion menu - use fzf-tab instead
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
 # fzf integration
 eval "$(fzf --zsh)" # Ctrl-R to search history
 
@@ -45,3 +65,10 @@ eval "$(zoxide init zsh)"
 
 export RUSTUP_HOME=~/.cache/rustup
 export LESSHISTFILE=-
+export EDITOR=hx
+export VISUAL=hx
+
+alias lazygit='CONFIG_DIR=~/.config/lazygit lazygit'
+alias lg='lazygit'
+alias ls='ls --color'
+alias glg='git log --pretty="$%C(yellow)%h%C(reset) %<(50,trunc)%s" --shortstat --color | tr "\n" " " | tr "$" "\n"'

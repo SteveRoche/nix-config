@@ -12,26 +12,29 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
 
   environment.systemPackages = with pkgs; [
     # CLI tools
     wget
     zoxide
+    bat
     tree
     jq
     fd
     ripgrep
     fzf
-    lf
+    yazi
     cloc
     just
+    pdftk
 
     # Git
     gitAndTools.gitFull
     git-extras
     gh
     lazygit
+    gnupg
+    delta
 
     # Terminal editors
     vim
@@ -70,9 +73,11 @@
 
     # Containers
     podman
+    podman-compose
     kind
     kubectl
     kustomize_4
+    kubernetes-helm
 
     # Misc
     home-manager

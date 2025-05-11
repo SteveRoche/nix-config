@@ -19,7 +19,7 @@
       magnification = true;
       persistent-apps = [
         "/Applications/Horse 2.app"
-        "/Applications/Zen Browser.app"
+        "/Applications/Safari.app"
         {spacer = {small = true;};}
         "/Applications/Proton Mail.app"
         "/Applications/TickTick.app"
@@ -46,6 +46,33 @@
     };
     screensaver.askForPasswordDelay = 10; # seconds
     screencapture.location = "~/Pictures/Screenshots";
+    CustomUserPreferences = {
+      "com.raycast.macos" = {
+        raycastPreferredWindowMode = "compact";
+        raycastShouldFollowSystemAppearance = true;
+        raycastGlobalHotkey = "Command-49"; # Cmd+Space
+      };
+
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          # Disable Spotlight and Finder window hotkeys to replace with Raycast
+          "64" = {
+            enabled = 0;
+            value = {
+              parameters = [32 49 1048576];
+              type = "standard";
+            };
+          };
+          "65" = {
+            enabled = 0;
+            value = {
+              parameters = [32 49 1572864];
+              type = "standard";
+            };
+          };
+        };
+      };
+    };
   };
 
   system.keyboard.enableKeyMapping = true;
@@ -64,37 +91,40 @@
       "vfkit" # https://github.com/NixOS/nixpkgs/issues/305868
     ];
     casks = [
-      "zen-browser"
+      "adguard"
+      "alt-tab"
+      "blender"
+      "calibre"
+      "db-browser-for-sqlite"
+      "discord"
+      "font-fira-code-nerd-font"
+      "font-fragment-mono"
+      "font-jetbrains-mono"
+      "ghostty"
+      "github"
+      "grandperspective"
+      "imhex"
+      "keepingyouawake"
+      "linear-linear"
+      "netnewswire"
+      "numi"
       "obsidian"
-      "raycast"
+      "pomatez"
+      "proton-drive"
+      "proton-mail"
+      "proton-mail-bridge"
       "proton-pass"
       "protonvpn"
-      "proton-mail"
-      "proton-drive"
-      "ticktick"
-      "whatsapp"
-      "blender"
-      "discord"
-      "keepingyouawake"
+      "raycast"
       "steam"
-      "netnewswire"
-      "yt-music"
-      "pomatez"
-      # "unnaturalscrollwheels"
-      "grandperspective"
-      "numi"
-      "linear-linear"
-      "zotero"
-
-      # GUI developer tools
-      "ghostty"
+      "sublime-text"
+      "ticktick"
       "visual-studio-code"
-      "github"
-      "imhex"
-
-      # Fonts
-      "font-fragment-mono"
-      "font-fira-code-nerd-font"
+      "whatsapp"
+      "whisky"
+      "yt-music"
+      "zotero"
+      # "unnaturalscrollwheels"
     ];
   };
 

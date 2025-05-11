@@ -88,6 +88,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  users.defaultUserShell = pkgs.zsh;
   users.users.steve = {
     isNormalUser = true;
     description = "Steve Roche";
