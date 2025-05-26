@@ -18,8 +18,8 @@
       mru-spaces = false;
       magnification = true;
       persistent-apps = [
-        "/Applications/Horse 2.app"
-        "/Applications/Safari.app"
+        "/Applications/Horse.app"
+        "/System/Cryptexes/App/System/Applications/Safari.app"
         {spacer = {small = true;};}
         "/Applications/Proton Mail.app"
         "/Applications/TickTick.app"

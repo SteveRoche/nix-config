@@ -27,6 +27,7 @@
     cloc
     just
     pdftk
+    htop
 
     # Git
     gitAndTools.gitFull
