@@ -95,6 +95,7 @@
       "alt-tab"
       "blender"
       "calibre"
+      "google-chrome"
       "db-browser-for-sqlite"
       "discord"
       "font-fira-code-nerd-font"
